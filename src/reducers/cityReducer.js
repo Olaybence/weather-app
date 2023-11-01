@@ -1,8 +1,7 @@
-// reducers/cityReducer.js
 import { ADD_CITY, REMOVE_CITY } from '../constants/actionTypes';
 
 const initialState = {
-  capitalCities: [],
+  selectedCapitalCities: []
 };
 
 const cityReducer = (state = initialState, action) => {
@@ -10,12 +9,12 @@ const cityReducer = (state = initialState, action) => {
     case ADD_CITY:
       return {
         ...state,
-        capitalCities: [...state.capitalCities, action.city],
+        selectedCapitalCities: [...state.selectedCapitalCities, action.city],
       };
     case REMOVE_CITY:
       return {
         ...state,
-        capitalCities: state.capitalCities.filter((city) => city !== action.city),
+        selectedCapitalCities: state.selectedCapitalCities.filter((city) => city !== action.city),
       };
     default:
       return state;

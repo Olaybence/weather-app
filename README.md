@@ -2,6 +2,8 @@
 
 - npm install react-redux
 - npm install redux
+- npm install axios
+- npm install papaparse
     
 
 # Getting Started with Create React App
