@@ -1,41 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import "./WeatherInfo.css";
+import { BiArrowBack } from "react-icons/bi";
+import { FaTemperatureHigh } from "react-icons/fa";
+import { TbSunrise, TbSunset, TbTemperatureCelsius } from "react-icons/tb";
+import { CITY_LIST_PAGE } from "../../constants/actionTypes";
+import Clock from "../Clock/Clock";
 
-function WeatherInfo(city) {
-  const [weatherData, setWeatherData] = useState(null);
+class WeatherInfo extends Component {
+  state = {
+    weatherData: null,
+  };
 
-  useEffect(() => {
-    const apiKey = "1dbe9f877272778db7c55f57407ee60c";
-    const city = "London"; // TODO: Update to the selected
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},uk&appid=${apiKey}`;
+  componentDidMount() {
+    console.log("The current city:", this.props.city);
+    if (this.props.currentCity && this.props.currentISO3166) {
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${this.props.currentCity},${this.props.currentISO3166},uk&appid=${this.props.apiKey}`;
+      console.log("Tries fetch from URL: ", apiUrl);
+      this.fetchWeatherData(apiUrl);
+    } else {
+      console.warn("Weather data was not updated!");
+    }
+  }
 
+  fetchWeatherData(apiUrl) {
     axios
       .get(apiUrl)
       .then((response) => {
         console.log("Weather response", response);
-        setWeatherData(response.data);
+        this.setState({ weatherData: response.data });
       })
       .catch((error) => {
         console.error("Error fetching weather data:", error);
       });
-  }, []);
-
-  if (weatherData === null) {
-    return <div>Loading...</div>;
   }
 
-  return (
-    <div className="centerStyle">
-      <p>{weatherData?.weather[0]?.icon}</p>
-      <p>{weatherData?.weather[0]?.description}</p>
-      <p>temperature:{weatherData.main.temp}</p>
-      {/* <p>temperature_min:{weatherData.main.temp_min}</p>
-      <p>temperature_max:{weatherData.main.temp_max}</p> */}
-      <p>sunrise:{weatherData.sys.sunrise}</p>
-      <p>sunset:{weatherData.sys.sunset}</p>
-    </div>
-  );
+  render() {
+    if (this.state.weatherData === null) {
+      return <div>Loading...</div>;
+    }
+
+    const sunset = new Date(this.state.weatherData.sys.sunset);
+    const sunrise = new Date(this.state.weatherData.sys.sunrise);
+    return (
+      <div className="centerStyle">
+        <p>{this.props.currentCity}</p>
+        <Clock />
+        <div>{this.state.weatherData?.weather[0]?.icon}</div>
+        <div className="data">
+          {this.state.weatherData?.weather[0]?.description}
+        </div>
+        <div className="data">
+          <FaTemperatureHigh />
+          {Math.round(this.state.weatherData.main.temp - 273.15)} <TbTemperatureCelsius />
+        </div>
+        {/* <p>temperature_min:{this.state.weatherData.main.temp_min}</p>
+      <p>temperature_max:{this.state.weatherData.main.temp_max}</p> */}
+        <div className="data">
+          <TbSunrise />
+          {sunset.getHours()}:{sunset.getMinutes()}
+        </div>
+        <div className="data">
+          <TbSunset />
+          {sunrise.getHours()}:{sunrise.getMinutes()}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default WeatherInfo;

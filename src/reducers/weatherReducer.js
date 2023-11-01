@@ -1,9 +1,9 @@
 import { UPDATE_DATA } from '../constants/actionTypes';
 
 const initialState = {
-  temperature: "23",
-  sunrise: new Date(),
-  sunset: new Date()
+  temperature: null,
+  sunrise: null,
+  sunset: null
 };
 
 const weatherReducer = (state = initialState, action) => {

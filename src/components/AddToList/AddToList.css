@@ -1,0 +1,10 @@
+.select {
+  border: none; /* Remove the default border */
+  border-bottom: 1px solid var(--blue); /* Add a 1px transparent bottom border */
+  background-color: transparent; /* Make the background transparent */
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+}

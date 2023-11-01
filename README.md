@@ -4,7 +4,8 @@
 - npm install redux
 - npm install axios
 - npm install papaparse
-    
+- npm install react-select
+- npm install react-icons
 
 # Getting Started with Create React App
 

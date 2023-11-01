@@ -2,48 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addCity, removeCity } from "../../actions/cityActions";
 import "./CityList.css";
-import Papa from "papaparse";
+import { ADD_CITY_PAGE } from "../../constants/actionTypes";
 
 class CityList extends Component {
-  state = {
-    city: "",
-    capitalCities: [],
-    selectedCapitalCities: ["TODO-MyLocation"],
-  };
-
-  componentDidMount() {
-    this.fetchAndParseCSV("./capitalCityList.csv");
-  }
-
-  fetchAndParseCSV = (filePath) => {
-    fetch(filePath)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.text();
-      })
-      .then((csvText) => {
-        Papa.parse(csvText, {
-          header: true, // Treat the first row as header
-          complete: (result) => {
-            if (result.errors.length === 0) {
-              // Access the parsed CSV data here
-              console.log("CSV result:", result.data);
-              this.setState({
-                capitalCities: result.data.map((item) => item.capital),
-              });
-            } else {
-              console.error("Error parsing CSV:", result.errors);
-            }
-          },
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching CSV:", error);
-      });
-  };
-
   handleAddCity() {
     this.props.addCity(this.state.city);
     this.setState({ city: "" });
@@ -53,24 +14,32 @@ class CityList extends Component {
     this.props.removeCity(city);
   }
 
-  switchToAddCity() {
-    console.log("switchToAddCity");
+  loadWeather(city) {
+    console.log("city", city);
+    this.props.selectCity(city);
+  }
+
+  handlePageChange = () => {
+    this.props.changePage(ADD_CITY_PAGE); // Change the page to the second page
   }
 
   render() {
-    console.log("RENDERING CityList");
+    const { favoriteCapitalCities } = this.props;
     return (
       <div>
         <ul className="no-left-padding">
-          {this.state.selectedCapitalCities.map((city, index) => (
-            <li className="list-style" key={index}>
-              <button className="city-button-style" onClick={this.switchToAddCity()}>
-                {city}
+          {favoriteCapitalCities.map((city) => (
+            <li className="list-style" key={city.city}>
+              <button
+                className="city-button-style"
+                onClick={() => this.loadWeather(city)}
+              >
+                {city.city}
               </button>
             </li>
           ))}
         </ul>
-        <button className="add-button-style" onClick={this.switchToAddCity()}>
+        <button className="add-button-style" onClick={this.handlePageChange}>
           +
         </button>
       </div>

@@ -1,6 +1,20 @@
+.data {
+  font-size: var(--fs-small);
+  display: flex;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 .centerStyle {
-    color: #3A9AB9;
-    font-size: calc(10px + 4vmin);
-    text-align: center;
-    margin: 0;
-  }
+  color: var(--light-blue);
+  font-size: var(--fs-mid);
+  text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

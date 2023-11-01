@@ -1,8 +1,10 @@
-.centerStyle {
-  color: #3893B1;
-  font-size: calc(10px + 4vmin);
+.clock {
+  color: var(--light-blue);
+  font-size: var(--fs-mid);
   text-align: center;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .pAfterStyle {

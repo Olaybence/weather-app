@@ -13,6 +13,11 @@ code {
 }
 
 :root {
-  --text-color: "#3893B1";
-  --fs-mid: 'calc(10px + 4vmin)';
+  --blue: #3893B1;
+  --light-blue: #4fcef9;
+  --green: #4CAF50;
+  --dark-green: #3e8e41;
+
+  --fs-mid: 3rem;
+  --fs-small: 1.5rem;
 }

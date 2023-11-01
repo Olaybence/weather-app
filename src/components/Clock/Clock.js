@@ -21,9 +21,9 @@ function Clock() {
   const [hour, minute] = formattedTime.split(':');
 
   return (
-    <div className="centerStyle">
-        <p className="pAfterStyle">{hour}</p>
-        <p className="pBeforeStyle">{minute}</p>
+    <div className="clock">
+        <span>{hour}</span>
+        <span>{minute}</span>
     </div>
   );
 }
