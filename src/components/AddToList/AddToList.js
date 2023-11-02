@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import "./AddToList.css";
-import { CITY_LIST_PAGE } from "../../constants/actionTypes";
+import { CITY_LIST_PAGE } from "../../constants/pageTypes";
+import { connect } from "react-redux";
+import { addCity,removeCity } from "../../actions/cityActions";
+import { changePage } from "../../actions/pageActions";
 
 /**
  * Add cities to the favorite list.
@@ -11,42 +14,34 @@ import { CITY_LIST_PAGE } from "../../constants/actionTypes";
  */
 class AddToList extends Component {
   state = {
-    selectedOption: null
-  };
+    selectedOption: ""
+  }
 
   handleInputChange = (newValue) => {
     console.log("handleInputChange", newValue);
     if (newValue) {
       this.setState({ selectedOption: newValue });
     } else {
-      this.setState({ selectedOption: null });
+      this.setState({ selectedOption: "" });
     }
   };
 
   handleSelectChange = (selectedOption) => {
     console.log("handleSelectChange", selectedOption);
-    this.setState({ selectedOption: selectedOption });
     this.props.addCity(selectedOption.value);
-    this.back();
+    this.props.changePage(CITY_LIST_PAGE);
   };
 
-  onSelect(selectedOption) {
-    console.log("selectedOption", selectedOption);
-    this.setState({ selectedOption: selectedOption });
-  }
-
   render() {
-    const { cities, changePage } = this.props;
-    const cityNames = cities.map(city => city.city);
-    this.back = () => changePage(CITY_LIST_PAGE);
-    console.log("cities",cities);
-    console.log("cityNames",cityNames);
+    console.log("this.props",this.props);
+    console.log("BENCE Cities",this.props.allCities);
+    const cities = this.props.allCities;
     return (
       <div style={{width: '300px'}}>
         <Select
           onChange={this.handleSelectChange}
           onInputChange={this.handleInputChange}
-          options={cities.map(city => ({label: city.city, value: city}))}
+          options={cities.map(item => ({label: item.city, value: item}))}
           isClearable={true}
           isSearchable={true}
           placeholder="Type to search..."
@@ -57,4 +52,18 @@ class AddToList extends Component {
   }
 }
 
-export default AddToList;
+const mapStateToProps = (state) => {
+  console.log("AddToList - mapStateToProps state", state);
+  return {
+  allCities: state.cities.allCities,
+  favoriteCities: state.cities.favoriteCities,
+}
+};
+
+const mapDispatchToProps = {
+  addCity,
+  removeCity,
+  changePage
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddToList);

@@ -1,34 +1,39 @@
+// React
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCity, removeCity } from "../../actions/cityActions";
+
+// CSS
 import "./CityList.css";
-import { ADD_CITY_PAGE } from "../../constants/actionTypes";
 
+import { ADD_CITY_PAGE, WEATHER_PAGE } from "../../constants/pageTypes";
+
+// Actions
+import { changePage } from "../../actions/pageActions";
+import { updateCurrentCity } from "../../actions/weatherActions";
+import { addCity, removeCity } from "../../actions/cityActions";
+
+/**
+ * The list of the favorite capital cities.
+ */
 class CityList extends Component {
-  handleAddCity() {
-    this.props.addCity(this.state.city);
-    this.setState({ city: "" });
-  }
-
-  handleRemoveCity(city) {
-    this.props.removeCity(city);
-  }
 
   loadWeather(city) {
-    console.log("city", city);
-    this.props.selectCity(city);
+    console.log("loadWeather city", city);
+    this.props.updateCurrentCity(city);
+    this.props.changePage(WEATHER_PAGE);
   }
 
   handlePageChange = () => {
+    console.log("handlePageChange ADD_CITY_PAGE");
     this.props.changePage(ADD_CITY_PAGE); // Change the page to the second page
-  }
+  };
 
   render() {
-    const { favoriteCapitalCities } = this.props;
+    console.log("CityList props:",this.props);
     return (
       <div>
         <ul className="no-left-padding">
-          {favoriteCapitalCities.map((city) => (
+          {this.props.favoriteCities.map((city) => (
             <li className="list-style" key={city.city}>
               <button
                 className="city-button-style"
@@ -47,13 +52,20 @@ class CityList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedCapitalCities: state.cities.selectedCapitalCities,
-});
+const mapStateToProps = (state) => {
+  return {
+    allCities: state.cities.allCities,
+    favoriteCities: state.cities.favoriteCities,
+
+    currentPage: state.page.currentPage
+  };
+};
 
 const mapDispatchToProps = {
+  changePage,
   addCity,
   removeCity,
+  updateCurrentCity
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityList);
