@@ -1,0 +1,16 @@
+.clock {
+  color: var(--light-blue);
+  font-size: var(--fs-mid);
+  text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pAfterStyle {
+  margin-bottom: 0;
+}
+
+.pBeforeStyle {
+  margin-top: 0;
+}

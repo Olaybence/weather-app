@@ -1,0 +1,3 @@
+// Weather
+export const UPDATE_WEATHER_DATA = 'UPDATE_WEATHER_DATA';
+export const UPDATE_CURRENT_CITY = 'UPDATE_CURRENT_CITY';

@@ -1,3 +1,21 @@
+# Project specific depencendies:
+
+- npm install react-redux
+- npm install redux
+- npm install axios
+- npm install papaparse
+- npm install react-select
+- npm install react-icons
+
+
+
+
+
+
+
+# GENERAL PROJECT INFO # REACT
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

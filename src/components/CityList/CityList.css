@@ -1,0 +1,42 @@
+.no-left-padding {
+  padding-left: 0;
+}
+
+.list-style {
+  text-align: center;
+  margin: 0;
+  list-style-type: none;
+}
+
+.city-button-style {
+  font-size: var(--fs-small);
+  color: var(--light-blue);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.city-button-style:hover {
+  transform: scale(1.3);
+  color: var(--blue);
+}
+
+.add-button-style {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 4rem;
+    cursor: pointer;
+    color: var(--green);
+    transition: transform 0.2s ease;
+}
+
+.add-button-style:hover {
+  transform: scale(1.3);
+  color: var(--dark-green);
+}
+
+.add-button-style:active {
+  transform: scale(0.9);
+}
