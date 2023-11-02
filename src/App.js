@@ -40,7 +40,7 @@ class App extends React.Component {
           complete: (result) => {
             if (result.errors.length === 0) {
               // Access the parsed CSV data here
-              console.log("CSV result length:", result.data);
+              console.log("App - CSV result length:", result.data.length);
               this.props.fetchData(result.data);
             } else {
               console.error("Error parsing CSV:", result.errors);
@@ -54,14 +54,13 @@ class App extends React.Component {
   };
 
   selectCity = (selectCity) => {
-    console.log("selectCity", selectCity);
+    console.log("App - selectCity", selectCity.length);
     this.props.updateCurrentCity(selectCity);
     this.props.changePage(WEATHER_PAGE);
   };
 
   renderPage() {
-    console.log("Current page: ", this.props.page);
-    console.log("FavoriteCities: ", this.props.favoriteCities);
+    console.log("App - Current page: ", this.props.page);
     switch (this.props.page) {
       case CITY_LIST_PAGE:
         return (
@@ -107,11 +106,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("App - mapStateToProps state", state);
-  console.log(
-    "App - mapStateToProps state.cities.favoriteCities",
-    state.cities.favoriteCities
-  );
   return {
     allCities: state.cities.allCities,
     favoriteCities: state.cities.favoriteCities,

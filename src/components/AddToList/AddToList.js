@@ -18,7 +18,7 @@ class AddToList extends Component {
   }
 
   handleInputChange = (newValue) => {
-    console.log("handleInputChange", newValue);
+    console.log("AddToList - handleInputChange", newValue);
     if (newValue) {
       this.setState({ selectedOption: newValue });
     } else {
@@ -27,7 +27,7 @@ class AddToList extends Component {
   };
 
   handleSelectChange = (selectedOption) => {
-    console.log("handleSelectChange", selectedOption);
+    console.log("AddToList - handleSelectChange", selectedOption);
     this.props.addCity(selectedOption.value);
     this.props.changePage(CITY_LIST_PAGE);
   };

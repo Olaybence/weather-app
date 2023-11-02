@@ -18,18 +18,18 @@ import { addCity, removeCity } from "../../actions/cityActions";
 class CityList extends Component {
 
   loadWeather(city) {
-    console.log("loadWeather city", city);
+    console.log("CityList - loadWeather city", city);
     this.props.updateCurrentCity(city);
     this.props.changePage(WEATHER_PAGE);
   }
 
   handlePageChange = () => {
-    console.log("handlePageChange ADD_CITY_PAGE");
+    console.log("CityList - handlePageChange ADD_CITY_PAGE");
     this.props.changePage(ADD_CITY_PAGE); // Change the page to the second page
   };
 
   render() {
-    console.log("CityList props:",this.props);
+    console.log("CityList - props:",this.props);
     return (
       <div>
         <ul className="no-left-padding">

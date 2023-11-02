@@ -1,11 +1,11 @@
 import { ADD_CITY, FETCH_DATA, REMOVE_CITY } from "../constants/cityActionTypes";
 
-export const addCity = (city, ISO3166) => {
-  console.log("addCity called", city, ISO3166);
+export const addCity = (city) => {
+  console.log("addCity called", city);
   return {
     type: ADD_CITY,
-    city: city,
-    ISO3166: ISO3166,
+    city: city.city,
+    ISO3166: city.ISO3166,
   };
 };
 
@@ -18,7 +18,7 @@ export const removeCity = (city) => {
 };
 
 export const fetchData = (cities) => {
-  console.log("fetchData called", cities);
+  console.log("fetchData called", cities.length);
   return {
     type: FETCH_DATA,
     cities: cities,

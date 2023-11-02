@@ -14,18 +14,18 @@ class WeatherInfo extends Component {
   successfulFetch = true;
 
   componentDidMount() {
-    console.log("The current props:", this.props);
+    console.log("WeatherInfo - The current props:", this.props);
     if (this.props.city && this.props.ISO3166) {
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${this.props.city},${this.props.ISO3166}&appid=${this.props.apiKey}`;
-      console.log("Tries fetch from URL: ", apiUrl);
+      console.log("WeatherInfo - Tries fetch from URL: ", apiUrl);
       this.fetchWeatherData(apiUrl);
     } else {
-      console.warn("Weather data was not updated!");
+      console.warn("WeatherInfo - Weather data was not updated!");
     }
   }
 
   componentWillUnmount() {
-    console.log("componentWillUnmount");
+    console.log("WeatherInfo - componentWillUnmount");
     this.successfulFetch = true;
   }
 
@@ -33,14 +33,14 @@ class WeatherInfo extends Component {
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("Weather response", response);
+        console.log("WeatherInfo - Weather response", response);
         this.props.updateWeatherData(response);
       })
       .catch((error) => {
         this.successfulFetch = false;
         this.props.updateWeatherData(null);
-        console.error("Error fetching weather data:", error);
-        console.error("The used URL:", apiUrl);
+        console.error("WeatherInfo - Error fetching weather data:", error);
+        console.error("WeatherInfo - The used URL:", apiUrl);
       });
   }
 
@@ -50,13 +50,13 @@ class WeatherInfo extends Component {
 
     // Construct the full URL for the weather icon
     const iconUrl = `${iconBaseUrl}${iconCode}@2x.png`;
-    console.log("iconUrl:", iconUrl);
+    console.log("WeatherInfo - iconUrl:", iconUrl);
 
     return <img src={iconUrl} alt="Weather Icon" />;
   };
 
   render() {
-    console.log("this.props", this.props);
+    console.log("WeatherInfo - props", this.props);
     if (!this.successfulFetch) {
       return (
         <div className="centerStyle">
@@ -95,7 +95,6 @@ class WeatherInfo extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log("WeatherInfo - mapStateToProps state", state);
   return {
     sunset: state.weather.sunset,
     sunrise: state.weather.sunrise,
