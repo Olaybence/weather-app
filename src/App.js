@@ -40,7 +40,7 @@ class App extends React.Component {
           complete: (result) => {
             if (result.errors.length === 0) {
               // Access the parsed CSV data here
-              console.log("CSV result length:", result.data.length);
+              console.log("CSV result length:", result.data);
               this.props.fetchData(result.data);
             } else {
               console.error("Error parsing CSV:", result.errors);
@@ -60,9 +60,9 @@ class App extends React.Component {
   };
 
   renderPage() {
-    console.log("Current page: ", this.props.currentPage);
+    console.log("Current page: ", this.props.page);
     console.log("FavoriteCities: ", this.props.favoriteCities);
-    switch (this.props.currentPage) {
+    switch (this.props.page) {
       case CITY_LIST_PAGE:
         return (
           <div>
@@ -93,7 +93,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App-body">
-        {this.props.currentPage !== CITY_LIST_PAGE ? (
+        {this.props.page !== CITY_LIST_PAGE ? (
           <BiArrowBack
             className="back"
             onClick={() => this.props.changePage(CITY_LIST_PAGE)}
@@ -116,7 +116,7 @@ const mapStateToProps = (state) => {
     allCities: state.cities.allCities,
     favoriteCities: state.cities.favoriteCities,
 
-    currentPage: state.page.currentPage,
+    page: state.page.page,
   };
 };
 

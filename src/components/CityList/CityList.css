@@ -14,6 +14,12 @@
   background-color: transparent;
   border: none;
   padding: 0;
+  cursor: pointer;
+}
+
+.city-button-style:hover {
+  transform: scale(1.3);
+  color: var(--blue);
 }
 
 .add-button-style {
@@ -23,16 +29,14 @@
     font-size: 4rem;
     cursor: pointer;
     color: var(--green);
-    transition: transform 0.2s ease; /* Add a transform transition */
+    transition: transform 0.2s ease;
 }
 
-/* Add a hover effect to the button */
 .add-button-style:hover {
-  transform: scale(1.3); /* Increase the size on hover */
+  transform: scale(1.3);
   color: var(--dark-green);
 }
 
-/* Add a pressed effect to the button */
 .add-button-style:active {
-  transform: scale(0.9); /* Decrease the size when pressed */
+  transform: scale(0.9);
 }

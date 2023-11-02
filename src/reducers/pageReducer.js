@@ -1,7 +1,7 @@
 import { CHANGE_PAGE, CITY_LIST_PAGE } from "../constants/pageTypes";
 
 const initialState = {
-  currentPage: CITY_LIST_PAGE,
+  page: CITY_LIST_PAGE,
 };
 
 const pageReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const pageReducer = (state = initialState, action) => {
     case CHANGE_PAGE:
       return {
         ...state,
-        currentPage: action.currentPage
+        page: action.page
       };
     default:
       return state;

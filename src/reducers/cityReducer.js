@@ -26,16 +26,22 @@ const cityReducer = (state = initialState, action) => {
         favoriteCities: state.favoriteCities.filter(
           (item) => item.city !== action.city
         ),
-        allCities: [...state.allCities, action.city],
+        allCities: sortObjectArray([...state.allCities, action.city]),
       };
     case FETCH_DATA:
       return {
         ...state,
-        allCities: action.cities,
+        allCities: sortObjectArray(action.cities),
       };
     default:
       return state;
   }
 };
+
+function sortObjectArray(array) {
+  return array.slice().sort((a, b) => {
+    return a.city.localeCompare(b.city);
+  });
+}
 
 export default cityReducer;

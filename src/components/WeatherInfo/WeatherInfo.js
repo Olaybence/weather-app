@@ -15,7 +15,6 @@ class WeatherInfo extends Component {
 
   componentDidMount() {
     console.log("The current props:", this.props);
-    console.log("The current state:", this.state);
     if (this.props.city && this.props.ISO3166) {
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${this.props.city},${this.props.ISO3166}&appid=${this.props.apiKey}`;
       console.log("Tries fetch from URL: ", apiUrl);

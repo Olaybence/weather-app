@@ -33,8 +33,7 @@ class AddToList extends Component {
   };
 
   render() {
-    console.log("this.props",this.props);
-    console.log("BENCE Cities",this.props.allCities);
+    console.log("AddToList - render props",this.props);
     const cities = this.props.allCities;
     return (
       <div style={{width: '300px'}}>

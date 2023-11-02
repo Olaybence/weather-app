@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
     allCities: state.cities.allCities,
     favoriteCities: state.cities.favoriteCities,
 
-    currentPage: state.page.currentPage
+    page: state.page.page
   };
 };
 

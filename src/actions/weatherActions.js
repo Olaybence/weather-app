@@ -13,7 +13,7 @@ export const updateCurrentCity = (city) => {
 };
 
 export const updateWeatherData = (response) => {
-  console.log("openweathermap response: ", response);
+  console.log("updateWeatherData openweathermap response: ", response);
   const res = {
     type: UPDATE_WEATHER_DATA,
     sunrise: response?.data?.sys?.sunrise,
@@ -22,7 +22,6 @@ export const updateWeatherData = (response) => {
     description: response?.data?.weather[0]?.description,
     temp: response?.data?.main?.temp,
   };
-  console.log("openweathermap res: ", res);
   return res;
 };
 

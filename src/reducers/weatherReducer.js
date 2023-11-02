@@ -3,8 +3,6 @@ import {
   UPDATE_WEATHER_DATA,
 } from "../constants/weatherActionTypes";
 
-// TODO: USE REDUX TO STORE EVERYTHING
-// TODO: TYPES
 
 /**
  * @property city (string) - the name of the chosen capital to check its weather
@@ -39,7 +37,6 @@ const weatherReducer = (state = initialState, action) => {
         temp: action.temp,
       };
     case UPDATE_CURRENT_CITY:
-      console.log("GOTHERE")
       return {
         ...state,
         city: action.city,
