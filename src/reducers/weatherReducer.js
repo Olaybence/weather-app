@@ -1,5 +1,7 @@
 import { UPDATE_DATA } from '../constants/actionTypes';
 
+// TODO: USE REDUX TO STORE EVERYTHING
+
 const initialState = {
   temperature: null,
   sunrise: null,

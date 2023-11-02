@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import Select from "react-select";
-import { BiArrowBack } from "react-icons/bi";
 import "./AddToList.css";
 import { CITY_LIST_PAGE } from "../../constants/actionTypes";
 
+/**
+ * Add cities to the favorite list.
+ * 
+ * @state selectedOption - A capital city that was selected from the list
+ * and will be added to the favorite list
+ */
 class AddToList extends Component {
   state = {
     selectedOption: null
@@ -37,7 +42,7 @@ class AddToList extends Component {
     console.log("cities",cities);
     console.log("cityNames",cityNames);
     return (
-      <div>
+      <div style={{width: '300px'}}>
         <Select
           onChange={this.handleSelectChange}
           onInputChange={this.handleInputChange}
@@ -45,6 +50,7 @@ class AddToList extends Component {
           isClearable={true}
           isSearchable={true}
           placeholder="Type to search..."
+          width="200px"
         />
       </div>
     );
